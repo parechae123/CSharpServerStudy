@@ -8,13 +8,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.29.3" />
     <PackageReference Include="MessagePack" Version="3.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="protobuf-net" Version="3.2.45" />
     <PackageReference Include="System.Net.WebSockets" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Server\Client\" />
+    <Folder Include="Server\Protocol\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\GoogleProtoc\protoc-29.3-win64\bin\GenPackets.bat" Link="GenPackets.bat" />
+  </ItemGroup>
+
+<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+	<Exec Command="CALL C:\GitProjects\GoogleProtoc\protoc-29.3-win64\bin\GenPackets.bat $(SolutionDir)Server\Protocol $(SolutionDir)Server\Protocol" />
+</Target>
 
 </Project>

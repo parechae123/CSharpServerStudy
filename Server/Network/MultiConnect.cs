@@ -63,7 +63,7 @@ namespace CSharpServerStudy.Server.Network
                 {
                     idCheck.Remove(users[client.Client.RemoteEndPoint.ToString()].ID);
                     users.Remove(client.Client.RemoteEndPoint.ToString());
-
+                    
                 }
                 else
                 {
@@ -131,5 +131,6 @@ namespace CSharpServerStudy.Server.Network
                 item.Value.Client.GetStream().Write(buffer, 0, buffer.Length);
             }
         }
+        
     }
 }

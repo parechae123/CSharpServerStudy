@@ -10,9 +10,11 @@ class Program
     //프로그램 실행 시 무조건 실행되는 Main 함수, 프로그래머스 문제 풀때 있는 Main 그거임
     static async Task Main()
     {
-        var server = new MultiConnect(7777);
+        //var server = new MultiConnect(7777);
+        //await server.StartAsync();
         //var server = new Server(7777);
         //server.ServerMSG("서버 실행중...");
-        await server.StartAsync();
+        var server = new ProtocolBufferTest(7777);
+        await server.Start();
     }
 }
