@@ -9,6 +9,11 @@
 
   <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.29.3" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.67.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.69.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="MessagePack" Version="3.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="protobuf-net" Version="3.2.45" />
@@ -24,8 +29,10 @@
     <None Include="..\GoogleProtoc\protoc-29.3-win64\bin\GenPackets.bat" Link="GenPackets.bat" />
   </ItemGroup>
 
+	<!-- protoc의 batch파일 path / 서버,클라 프로토콜 object path/proto3 file path-->
 <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
 	<Exec Command="CALL C:\GitProjects\GoogleProtoc\protoc-29.3-win64\bin\GenPackets.bat $(SolutionDir)Server\Protocol $(SolutionDir)Server\Protocol" />
+	<Exec Command="CALL C:\GitProjects\GoogleProtoc\protoc-29.3-win64\bin\GenPackets.bat C:\GitProjects\CSharpClient\Protocol $(SolutionDir)Server\Protocol" />
 </Target>
 
 </Project>

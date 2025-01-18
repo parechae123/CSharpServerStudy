@@ -33,6 +33,20 @@ message User{
     string token = 2;
     string ip = 3;
 }
+message GetRequest {
+    string requestWord = 1;
+}
+
+message KeyNumberReq {
+    string requestWord = 1;
+    int32 requestNumb = 2;
+}
+
+service ServiceTest {
+    rpc firstEvent(GetRequest) returns (GetRequest);
+    rpc secondEvent(KeyNumberReq) returns (KeyNumberReq);
+}
+
 // Our address book file is just one of these.
 message AddressBook {
   repeated Person people = 1;

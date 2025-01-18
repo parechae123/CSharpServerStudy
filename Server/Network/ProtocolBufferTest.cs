@@ -6,6 +6,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Text.Unicode;
 using System.Threading.Tasks;
+using Google.Protobuf;
 using Google.Protobuf.Protocol;
 
 namespace CSharpServerStudy.Server.Network
@@ -46,9 +47,8 @@ namespace CSharpServerStudy.Server.Network
                     int byteRead = await stream.ReadAsync(buffer, 0, buffer.Length);
                     User user = new User { UserID = Encoding.UTF8.GetString(buffer, 0, byteRead), Token = string.Empty, Ip = client.Client.RemoteEndPoint.ToString() ?? string.Empty };
                     Console.WriteLine($"유저이름{user.UserID}토큰{user.Token}아이피{user.Ip}");
-                    ProtoBuf.Serializer.Serialize<User>(stream, user);
-                    
-
+                    user.WriteTo(stream);
+                    stream.Flush();
                 }
 
             }

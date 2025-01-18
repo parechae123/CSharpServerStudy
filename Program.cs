@@ -1,6 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using CSharpServer.Network;
 using CSharpServerStudy.Server.Network;
+using Google.Protobuf.Protocol;
+using Grpc.Core;
+using System.Threading.Channels;
 
 //Console.WriteLine(클래스 선언을 따로 하지 않아도 구문은 실행된다 신기하당)
 
@@ -14,7 +17,16 @@ class Program
         //await server.StartAsync();
         //var server = new Server(7777);
         //server.ServerMSG("서버 실행중...");
-        var server = new ProtocolBufferTest(7777);
-        await server.Start();
+        //var server = new ProtocolBufferTest(7777);
+        //await server.Start();
+
+
+        /*        FirstWeekSummary server = new FirstWeekSummary(7777);
+                server.Start();*/
+        var server = new ChannelServer();
+        server.Start();
+        Console.WriteLine("종료하려면 아무 키나 누르세요");
+        Console.ReadLine();
     }
+    
 }
