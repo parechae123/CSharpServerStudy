@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Data.SqlClient;
+using System.Net;
 
 namespace CSharpServerStudy.Server.Network
 {
@@ -37,11 +39,19 @@ namespace CSharpServerStudy.Server.Network
             var app = builder.Build();
             // 2. gRPC 엔드포인트 매핑
             app.UseRouting();
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<Google.Protobuf.Protocol.CustomService>();
+                try
+                {
+                    endpoints.MapGrpcService<Google.Protobuf.Protocol.CustomService>();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"엔드포인트 오류 : {ex.Message}" );
+                    throw;
+                }
             });
-
             // 3. 기본 HTTP 요청 차단 (선택적)
             app.MapGet("/", () => "gRPC 서버가 실행 중입니다. gRPC 클라이언트를 사용해 요청하세요.");
             app.MapWhen(context => true, appBuilder =>
@@ -52,8 +62,34 @@ namespace CSharpServerStudy.Server.Network
                     await context.Response.WriteAsync("Not Found");
                 });
             });
+            DBConnecting();
             app.Run();
         }
+
+        public void DBConnecting()
+        {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            string connectionString = "Server=localhost,3306;Database=csharpserverstudydb;User Id=Server;Password=0000;";
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    Console.WriteLine("연결 성공");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("");
+                Console.WriteLine("서버의 TLS 버전 : "+ServicePointManager.SecurityProtocol);
+                Console.WriteLine("서버의 TLS 버전과 대조혹은 인바운드 아웃바운드 확인 필요");
+                Console.WriteLine($"DB 연결 에러 : {ex.Message}");
+                Console.WriteLine("");
+                throw;
+            }
+        }
+
+
     }
 }
 namespace Google.Protobuf.Protocol
