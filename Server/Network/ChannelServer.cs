@@ -13,6 +13,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Data.SqlClient;
 using System.Net;
+using System.Data.Common;
+using MySql.Data.MySqlClient;
 
 namespace CSharpServerStudy.Server.Network
 {
@@ -68,24 +70,43 @@ namespace CSharpServerStudy.Server.Network
 
         public void DBConnecting()
         {
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-            string connectionString = "Server=localhost,3306;Database=csharpserverstudydb;User Id=Server;Password=0000;";
-            try
+            string connectionString = "Server=127.0.0.1;Port=3306;Database=csharpserverstudydb;User ID=Server;Password=0000;";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                try
                 {
                     connection.Open();
                     Console.WriteLine("연결 성공");
+
+                    string query = "SELECT * FROM user";
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    MySqlDataReader reader = command.ExecuteReader();
+
+                    List<(string,string,string)> data = new List<(string, string, string)>();
+                    while (reader.Read())
+                    {
+                        (string,string,string) tempData = (reader["index"].ToString(), reader["id"].ToString(), reader["password"].ToString());
+                        data.Add(tempData);
+                    }
+
+                    reader.Close();
+                    // 데이터 처리
+                    foreach (var item in data)
+                    {
+                        Console.WriteLine($"index : {item.Item1}, id : {item.Item2}, password : {item.Item3 }");
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("");
-                Console.WriteLine("서버의 TLS 버전 : "+ServicePointManager.SecurityProtocol);
-                Console.WriteLine("서버의 TLS 버전과 대조혹은 인바운드 아웃바운드 확인 필요");
-                Console.WriteLine($"DB 연결 에러 : {ex.Message}");
-                Console.WriteLine("");
-                throw;
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"DB 연결 에러: {ex.Message}");
+                    throw;
+                }
+                finally
+                {
+                    connection.Close();
+                    Console.WriteLine("DB 연결 종료");
+                }
             }
         }
 
