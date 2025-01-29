@@ -15,13 +15,14 @@ using Microsoft.Data.SqlClient;
 using System.Net;
 using System.Data.Common;
 using MySql.Data.MySqlClient;
+using CSharpServerStudy.Server.Handle;
 
 namespace CSharpServerStudy.Server.Network
 {
     internal class ChannelServer
     {
         WebApplicationBuilder builder = WebApplication.CreateBuilder();
-
+        DBConnector con;
         public void Start()
         {
 
@@ -70,32 +71,22 @@ namespace CSharpServerStudy.Server.Network
 
         public void DBConnecting()
         {
-            string connectionString = "Server=127.0.0.1;Port=3306;Database=csharpserverstudydb;User ID=Server;Password=0000;";
-
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            if (con == null)
             {
+                con = new DBConnector("127.0.0.1", "3306", "csharpserverstudydb", "Server", "0000");
+            }
+            using (MySqlConnection conn = new MySqlConnection(con.connectingString))
+            {
+
                 try
                 {
-                    connection.Open();
-                    Console.WriteLine("연결 성공");
-
-                    string query = "SELECT * FROM user";
-                    MySqlCommand command = new MySqlCommand(query, connection);
-                    MySqlDataReader reader = command.ExecuteReader();
-
-                    List<(string,string,string)> data = new List<(string, string, string)>();
-                    while (reader.Read())
+                    conn.Open();
+                    Console.WriteLine("DB 연결 성공");
+                    con.conn = conn;
+                    DataRequest<(string, string, string)>("user", "id", "213", (isSuccess, data) =>
                     {
-                        (string,string,string) tempData = (reader["index"].ToString(), reader["id"].ToString(), reader["password"].ToString());
-                        data.Add(tempData);
-                    }
 
-                    reader.Close();
-                    // 데이터 처리
-                    foreach (var item in data)
-                    {
-                        Console.WriteLine($"index : {item.Item1}, id : {item.Item2}, password : {item.Item3 }");
-                    }
+                    });
                 }
                 catch (Exception ex)
                 {
@@ -104,10 +95,54 @@ namespace CSharpServerStudy.Server.Network
                 }
                 finally
                 {
-                    connection.Close();
+                    con.DBDisConnect();
                     Console.WriteLine("DB 연결 종료");
                 }
             }
+        }
+
+        public void DataRequest<T>(string requestTable,string columnName,string dataName, Action<bool, T> action)
+        {
+            string query = $"SELECT * FROM {requestTable}";
+            Console.WriteLine(query);
+            //string query = $"SELECT * FROM {requestTable} WHERE {columnName} = @{dataName}";
+            //string query = $"SELECT * FROM {requestTable} WHERE {columnName} = @userId";
+            using (MySqlCommand command = new MySqlCommand(query, con.conn))
+            {
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    try
+                    {
+                        Console.WriteLine($"데이터 존재 : " + reader.HasRows);
+                        Console.WriteLine($"행의 길이 : " + reader.FieldCount);
+                        while (reader.Read())
+                        {
+                            //for문으로 fieldcount 돌리고 그걸 list나 linkedList로 만들어서 파싱해주면 어떰?
+                            Console.WriteLine($"{reader[0]},{reader[1]},{reader[2]}");
+                        }
+                        Console.WriteLine($"리더  : " + reader.IsClosed);
+                        /*for (int i = 0; i < reader.Depth; i++)
+                        {
+                            reader.
+                        }*/
+                        action.Invoke(true, default);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        //Console.WriteLine(ex.Message);
+
+                        action.Invoke(false, default);
+                        throw;
+                    }
+                    finally
+                    {
+                        
+                        
+                    }
+                }
+            }
+
         }
 
 

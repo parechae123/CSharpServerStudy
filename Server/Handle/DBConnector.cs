@@ -17,7 +17,7 @@ namespace CSharpServerStudy.Server.Handle
         string dbPassword;
         public MySqlConnection conn;
 
-        string connectingString
+        public string connectingString
         {
             get
             {
@@ -33,13 +33,14 @@ namespace CSharpServerStudy.Server.Handle
             dbPassword = password;
         }
 
-        public void DBConnect()
+        public MySqlConnection DBConnect()
         {
             using (MySqlConnection conn = new MySqlConnection(connectingString))
             {
                 conn.Open();
                 Console.WriteLine("DB 연결 성공");
                 this.conn = conn;
+                return conn;
             }
         }
         public void DBDisConnect()
