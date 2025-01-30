@@ -16,6 +16,8 @@ using System.Net;
 using System.Data.Common;
 using MySql.Data.MySqlClient;
 using CSharpServerStudy.Server.Handle;
+using System.Data.Entity;
+
 
 namespace CSharpServerStudy.Server.Network
 {
@@ -23,6 +25,7 @@ namespace CSharpServerStudy.Server.Network
     {
         WebApplicationBuilder builder = WebApplication.CreateBuilder();
         DBConnector con;
+        EfDBcontexter efCon;
         public void Start()
         {
 
@@ -65,24 +68,67 @@ namespace CSharpServerStudy.Server.Network
                     await context.Response.WriteAsync("Not Found");
                 });
             });
-            DBConnecting();
+            //DBConnecting();
+            EFConnecting();
             app.Run();
         }
+        public void EFConnecting()
+        {
+            Console.WriteLine($"1");
+            using (EfDBcontexter tempCon = new EfDBcontexter())
+            {
+                this.efCon = tempCon;
+                Console.WriteLine($"2");
+                tempCon.users.Add(new user { id = "213", Password = "1234" });
+                Console.WriteLine($"3");
+                tempCon.SaveChanges();
+            }
+            //efCon.Database.EnsureCreated();
 
+            Console.WriteLine($"4");
+            var users = efCon.users.ToList();
+            Console.WriteLine($"5");
+            foreach (var user in users)
+            {
+                Console.WriteLine($"id : {user.id}, Password : {user.Password}");
+            }
+            Console.WriteLine("EF성공");
+        }
         public void DBConnecting()
         {
             if (con == null)
             {
                 con = new DBConnector("127.0.0.1", "3306", "csharpserverstudydb", "Server", "0000");
-            }
-            using (MySqlConnection conn = new MySqlConnection(con.connectingString))
-            {
+                using (MySqlConnection conn = new MySqlConnection(con.connectingString))
+                {
 
+                    try
+                    {
+                        conn.Open();
+                        Console.WriteLine("DB 연결 성공");
+                        con.conn = conn;
+                        DataRequest<(string, string, string)>("user", "id", "213", (isSuccess, data) =>
+                        {
+
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"DB 연결 에러: {ex.Message}");
+                        throw;
+                    }
+                    finally
+                    {
+                        con.DBDisConnect();
+                        Console.WriteLine("DB 연결 종료");
+                    }
+                }
+            }
+            else
+            {
                 try
                 {
-                    conn.Open();
-                    Console.WriteLine("DB 연결 성공");
-                    con.conn = conn;
+                    con.conn.Open();
                     DataRequest<(string, string, string)>("user", "id", "213", (isSuccess, data) =>
                     {
 
@@ -90,15 +136,15 @@ namespace CSharpServerStudy.Server.Network
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"DB 연결 에러: {ex.Message}");
+
                     throw;
                 }
                 finally
                 {
                     con.DBDisConnect();
-                    Console.WriteLine("DB 연결 종료");
                 }
             }
+
         }
 
         public void DataRequest<T>(string requestTable,string columnName,string dataName, Action<bool, T> action)
