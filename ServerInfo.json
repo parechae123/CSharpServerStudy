@@ -1,0 +1,9 @@
+{
+  "DBLocation": {
+    "dbIP": "127.0.0.1",
+    "port": "3306",
+    "dbName": "csharpserverstudydb",
+    "userID": "Server",
+    "password": "0000"
+  }
+}

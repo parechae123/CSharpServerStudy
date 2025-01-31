@@ -16,7 +16,8 @@ using System.Net;
 using System.Data.Common;
 using MySql.Data.MySqlClient;
 using CSharpServerStudy.Server.Handle;
-using System.Data.Entity;
+using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace CSharpServerStudy.Server.Network
@@ -75,18 +76,37 @@ namespace CSharpServerStudy.Server.Network
         public void EFConnecting()
         {
             Console.WriteLine($"1");
-            using (EfDBcontexter tempCon = new EfDBcontexter())
+
+            string projectRoot = Path.Combine(Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName);
+
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(projectRoot) // 프로젝트 루트로 BasePath 설정
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .Build();
+
+            string connectionString = configuration.GetConnectionString("EfDBcontexter");
+            Console.WriteLine($"DB Connection: {connectionString}");
+
+
+            EfDBcontexter tempCon = new EfDBcontexter(configuration);
+            this.efCon = tempCon;
+            Console.WriteLine($"2");
+            tempCon.user.Add(new user { id = "213", Password = "1234" });
+            Console.WriteLine($"3");
+            try
             {
-                this.efCon = tempCon;
-                Console.WriteLine($"2");
-                tempCon.users.Add(new user { id = "213", Password = "1234" });
-                Console.WriteLine($"3");
                 tempCon.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                Console.WriteLine($"dbUpdateExeption 발생!!");
+                Console.WriteLine($"DB 저장 에러: {ex.InnerException.Message}");
+                throw;
             }
             //efCon.Database.EnsureCreated();
 
             Console.WriteLine($"4");
-            var users = efCon.users.ToList();
+            var users = efCon.user.ToList();
             Console.WriteLine($"5");
             foreach (var user in users)
             {

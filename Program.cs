@@ -23,10 +23,12 @@ class Program
 
         /*        FirstWeekSummary server = new FirstWeekSummary(7777);
                 server.Start();*/
-        var server = new ChannelServer();
+        /*        var server = new ChannelServer();
+                server.Start();
+                Console.WriteLine("종료하려면 아무 키나 누르세요");
+                Console.ReadLine();*/
+        var server = new DBConnectedServer();
         server.Start();
-        Console.WriteLine("종료하려면 아무 키나 누르세요");
-        Console.ReadLine();
     }
     
 }

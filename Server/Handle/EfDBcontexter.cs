@@ -1,29 +1,30 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure.Design;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace CSharpServerStudy.Server.Handle
 {
     internal class EfDBcontexter : DbContext
     {
+        private readonly IConfiguration _config;
+        //DBSet은 "반드시!" db의 이름과 동일해야 매핑이됨
+        public DbSet<user> user{ get; set; }
 
-        public DbSet<user> users{ get; set; }
-
-        public EfDBcontexter() : base("name=EfDBcontexter")
+        public EfDBcontexter(IConfiguration configuration)
         {
-            
+            _config = configuration;
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseMySql(
+                _config.GetConnectionString("EfDBcontexter"),
+                new MySqlServerVersion(new Version(8, 0, 33))
+            );
         }
     }
-
     public class user
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int index { get; set; }
         public string id { get; set; }
         public string Password { get; set; }

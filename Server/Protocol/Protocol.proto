@@ -28,11 +28,13 @@ message Person {
 
   google.protobuf.Timestamp last_updated = 5;
 }
+
 message User{
     string userID = 1;
     string token = 2;
     string ip = 3;
 }
+
 message GetRequest {
     string requestWord = 1;
 }
@@ -45,6 +47,16 @@ message KeyNumberReq {
 service ServiceTest {
     rpc firstEvent(GetRequest) returns (GetRequest);
     rpc secondEvent(KeyNumberReq) returns (KeyNumberReq);
+}
+
+message GetUserDB{
+    string index = 1;
+    string id = 2;
+    string pw = 3;
+}
+
+service DBRequest{
+    rpc GetUserInfo(GetRequest) returns (GetUserDB);
 }
 
 // Our address book file is just one of these.

@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EntityFramework" Version="6.5.1" />
     <PackageReference Include="Google.Protobuf" Version="3.29.3" />
     <PackageReference Include="Grpc.AspNetCore" Version="2.67.0" />
     <PackageReference Include="Grpc.Tools" Version="2.67.0">
@@ -17,10 +16,11 @@
     </PackageReference>
     <PackageReference Include="MessagePack" Version="3.1.1" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.5" />
     <PackageReference Include="MySql.Data" Version="9.2.0" />
-    <PackageReference Include="MySql.Data.EntityFramework" Version="9.2.0" />
+    <PackageReference Include="MySqlConnector" Version="2.4.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2" />
     <PackageReference Include="protobuf-net" Version="3.2.45" />
     <PackageReference Include="System.Data.sqlClient" Version="4.9.0" />
     <PackageReference Include="System.Net.WebSockets" Version="4.3.0" />

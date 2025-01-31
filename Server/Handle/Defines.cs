@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using Google.Protobuf.Protocol;
+using Grpc.Core;
 
 namespace CSharpServerStudy.Server.Handle
 {
@@ -18,6 +20,17 @@ namespace CSharpServerStudy.Server.Handle
         {
             this.id = id;
             this.client = client;
+        }
+    }
+    public class UserInfoRequest : DBRequest.DBRequestBase
+    {
+        public override Task<GetUserDB> GetUserInfo(GetRequest request, ServerCallContext context)
+        {
+            GetUserDB response = new GetUserDB()
+            {
+                
+            };
+            return Task.FromResult(response);
         }
     }
 }
