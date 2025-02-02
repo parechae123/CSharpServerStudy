@@ -22,7 +22,7 @@ namespace CSharpServerStudy.Server.Network
         DBConnector con;
         public void Start()
         {
-            DBConnect();
+            
             ServerON();
         }
         public void ServerON()
@@ -60,7 +60,7 @@ namespace CSharpServerStudy.Server.Network
                 try
                 {
                     // Google.Protobuf.Protocol.CustomService라는 gRPC 서비스를 엔드포인트에 매핑
-                    endpoints.MapGrpcService<Google.Protobuf.Protocol.CustomService>();
+                    endpoints.MapGrpcService<UserInfoRequest>();
                 }
                 catch (Exception ex)
                 {

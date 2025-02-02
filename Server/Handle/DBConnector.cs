@@ -39,6 +39,7 @@ namespace CSharpServerStudy.Server.Handle
             {
                 conn.Open();
                 Console.WriteLine("DB 연결 성공");
+                Console.WriteLine(connectingString);
                 this.conn = conn;
                 return conn;
             }

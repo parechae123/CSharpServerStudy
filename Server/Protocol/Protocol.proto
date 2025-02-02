@@ -38,6 +38,11 @@ message User{
 message GetRequest {
     string requestWord = 1;
 }
+message IDSet
+{
+    string password = 1;
+    string id = 2;
+}
 
 message KeyNumberReq {
     string requestWord = 1;
@@ -50,13 +55,25 @@ service ServiceTest {
 }
 
 message GetUserDB{
-    string index = 1;
+    int32 index = 1;
     string id = 2;
     string pw = 3;
 }
-
+message TryResults{
+    bool result =1;
+    string errorText = 2;
+}
+message ChatMessage
+{
+    string userName =1;
+    string chattingText = 2;
+    int64 time = 3;
+}
 service DBRequest{
     rpc GetUserInfo(GetRequest) returns (GetUserDB);
+    rpc RegistUser(IDSet) returns(TryResults);
+    rpc DeleteUser(IDSet) returns(TryResults);
+    rpc Chatting(stream ChatMessage) returns(stream ChatMessage);
 }
 
 // Our address book file is just one of these.

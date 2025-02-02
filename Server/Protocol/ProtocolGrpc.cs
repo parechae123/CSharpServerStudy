@@ -231,6 +231,12 @@ namespace Google.Protobuf.Protocol {
     static readonly grpc::Marshaller<global::Google.Protobuf.Protocol.GetRequest> __Marshaller_Protocol_GetRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Google.Protobuf.Protocol.GetRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Google.Protobuf.Protocol.GetUserDB> __Marshaller_Protocol_GetUserDB = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Google.Protobuf.Protocol.GetUserDB.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Google.Protobuf.Protocol.IDSet> __Marshaller_Protocol_IDSet = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Google.Protobuf.Protocol.IDSet.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Google.Protobuf.Protocol.TryResults> __Marshaller_Protocol_TryResults = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Google.Protobuf.Protocol.TryResults.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Google.Protobuf.Protocol.ChatMessage> __Marshaller_Protocol_ChatMessage = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Google.Protobuf.Protocol.ChatMessage.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Google.Protobuf.Protocol.GetRequest, global::Google.Protobuf.Protocol.GetUserDB> __Method_GetUserInfo = new grpc::Method<global::Google.Protobuf.Protocol.GetRequest, global::Google.Protobuf.Protocol.GetUserDB>(
@@ -239,6 +245,30 @@ namespace Google.Protobuf.Protocol {
         "GetUserInfo",
         __Marshaller_Protocol_GetRequest,
         __Marshaller_Protocol_GetUserDB);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Google.Protobuf.Protocol.IDSet, global::Google.Protobuf.Protocol.TryResults> __Method_RegistUser = new grpc::Method<global::Google.Protobuf.Protocol.IDSet, global::Google.Protobuf.Protocol.TryResults>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "RegistUser",
+        __Marshaller_Protocol_IDSet,
+        __Marshaller_Protocol_TryResults);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Google.Protobuf.Protocol.IDSet, global::Google.Protobuf.Protocol.TryResults> __Method_DeleteUser = new grpc::Method<global::Google.Protobuf.Protocol.IDSet, global::Google.Protobuf.Protocol.TryResults>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "DeleteUser",
+        __Marshaller_Protocol_IDSet,
+        __Marshaller_Protocol_TryResults);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Google.Protobuf.Protocol.ChatMessage, global::Google.Protobuf.Protocol.ChatMessage> __Method_Chatting = new grpc::Method<global::Google.Protobuf.Protocol.ChatMessage, global::Google.Protobuf.Protocol.ChatMessage>(
+        grpc::MethodType.DuplexStreaming,
+        __ServiceName,
+        "Chatting",
+        __Marshaller_Protocol_ChatMessage,
+        __Marshaller_Protocol_ChatMessage);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -252,6 +282,24 @@ namespace Google.Protobuf.Protocol {
     {
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::System.Threading.Tasks.Task<global::Google.Protobuf.Protocol.GetUserDB> GetUserInfo(global::Google.Protobuf.Protocol.GetRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::Google.Protobuf.Protocol.TryResults> RegistUser(global::Google.Protobuf.Protocol.IDSet request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::Google.Protobuf.Protocol.TryResults> DeleteUser(global::Google.Protobuf.Protocol.IDSet request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task Chatting(grpc::IAsyncStreamReader<global::Google.Protobuf.Protocol.ChatMessage> requestStream, grpc::IServerStreamWriter<global::Google.Protobuf.Protocol.ChatMessage> responseStream, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -305,6 +353,56 @@ namespace Google.Protobuf.Protocol {
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetUserInfo, null, options, request);
       }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Google.Protobuf.Protocol.TryResults RegistUser(global::Google.Protobuf.Protocol.IDSet request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return RegistUser(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Google.Protobuf.Protocol.TryResults RegistUser(global::Google.Protobuf.Protocol.IDSet request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_RegistUser, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.Protocol.TryResults> RegistUserAsync(global::Google.Protobuf.Protocol.IDSet request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return RegistUserAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.Protocol.TryResults> RegistUserAsync(global::Google.Protobuf.Protocol.IDSet request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_RegistUser, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Google.Protobuf.Protocol.TryResults DeleteUser(global::Google.Protobuf.Protocol.IDSet request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DeleteUser(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Google.Protobuf.Protocol.TryResults DeleteUser(global::Google.Protobuf.Protocol.IDSet request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_DeleteUser, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.Protocol.TryResults> DeleteUserAsync(global::Google.Protobuf.Protocol.IDSet request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DeleteUserAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.Protocol.TryResults> DeleteUserAsync(global::Google.Protobuf.Protocol.IDSet request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_DeleteUser, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncDuplexStreamingCall<global::Google.Protobuf.Protocol.ChatMessage, global::Google.Protobuf.Protocol.ChatMessage> Chatting(grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return Chatting(new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncDuplexStreamingCall<global::Google.Protobuf.Protocol.ChatMessage, global::Google.Protobuf.Protocol.ChatMessage> Chatting(grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncDuplexStreamingCall(__Method_Chatting, null, options);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       protected override DBRequestClient NewInstance(ClientBaseConfiguration configuration)
@@ -319,7 +417,10 @@ namespace Google.Protobuf.Protocol {
     public static grpc::ServerServiceDefinition BindService(DBRequestBase serviceImpl)
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_GetUserInfo, serviceImpl.GetUserInfo).Build();
+          .AddMethod(__Method_GetUserInfo, serviceImpl.GetUserInfo)
+          .AddMethod(__Method_RegistUser, serviceImpl.RegistUser)
+          .AddMethod(__Method_DeleteUser, serviceImpl.DeleteUser)
+          .AddMethod(__Method_Chatting, serviceImpl.Chatting).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -330,6 +431,9 @@ namespace Google.Protobuf.Protocol {
     public static void BindService(grpc::ServiceBinderBase serviceBinder, DBRequestBase serviceImpl)
     {
       serviceBinder.AddMethod(__Method_GetUserInfo, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Google.Protobuf.Protocol.GetRequest, global::Google.Protobuf.Protocol.GetUserDB>(serviceImpl.GetUserInfo));
+      serviceBinder.AddMethod(__Method_RegistUser, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Google.Protobuf.Protocol.IDSet, global::Google.Protobuf.Protocol.TryResults>(serviceImpl.RegistUser));
+      serviceBinder.AddMethod(__Method_DeleteUser, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Google.Protobuf.Protocol.IDSet, global::Google.Protobuf.Protocol.TryResults>(serviceImpl.DeleteUser));
+      serviceBinder.AddMethod(__Method_Chatting, serviceImpl == null ? null : new grpc::DuplexStreamingServerMethod<global::Google.Protobuf.Protocol.ChatMessage, global::Google.Protobuf.Protocol.ChatMessage>(serviceImpl.Chatting));
     }
 
   }

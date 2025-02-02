@@ -5,5 +5,9 @@
     "dbName": "csharpserverstudydb",
     "userID": "Server",
     "password": "0000"
+  },
+
+  "ServerString": {
+    "path": "Server=127.0.0.1,Port=3306;Database=csharpserverstudydb;User ID=Server;Password=0000"
   }
 }
