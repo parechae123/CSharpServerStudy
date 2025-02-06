@@ -25,33 +25,41 @@ namespace Google.Protobuf.Protocol {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Cg5Qcm90b2NvbC5wcm90bxIIUHJvdG9jb2waH2dvb2dsZS9wcm90b2J1Zi90",
-            "aW1lc3RhbXAucHJvdG8ihwIKBlBlcnNvbhIMCgRuYW1lGAEgASgJEgoKAmlk",
-            "GAIgASgFEg0KBWVtYWlsGAMgASgJEiwKBnBob25lcxgEIAMoCzIcLlByb3Rv",
-            "Y29sLlBlcnNvbi5QaG9uZU51bWJlchIwCgxsYXN0X3VwZGF0ZWQYBSABKAsy",
-            "Gi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wGkcKC1Bob25lTnVtYmVyEg4K",
-            "Bm51bWJlchgBIAEoCRIoCgR0eXBlGAIgASgOMhouUHJvdG9jb2wuUGVyc29u",
-            "LlBob25lVHlwZSIrCglQaG9uZVR5cGUSCgoGTU9CSUxFEAASCAoESE9NRRAB",
-            "EggKBFdPUksQAiIxCgRVc2VyEg4KBnVzZXJJRBgBIAEoCRINCgV0b2tlbhgC",
-            "IAEoCRIKCgJpcBgDIAEoCSIhCgpHZXRSZXF1ZXN0EhMKC3JlcXVlc3RXb3Jk",
-            "GAEgASgJIiUKBUlEU2V0EhAKCHBhc3N3b3JkGAEgASgJEgoKAmlkGAIgASgJ",
-            "IjgKDEtleU51bWJlclJlcRITCgtyZXF1ZXN0V29yZBgBIAEoCRITCgtyZXF1",
-            "ZXN0TnVtYhgCIAEoBSIyCglHZXRVc2VyREISDQoFaW5kZXgYASABKAUSCgoC",
-            "aWQYAiABKAkSCgoCcHcYAyABKAkiLwoKVHJ5UmVzdWx0cxIOCgZyZXN1bHQY",
-            "ASABKAgSEQoJZXJyb3JUZXh0GAIgASgJIkMKC0NoYXRNZXNzYWdlEhAKCHVz",
-            "ZXJOYW1lGAEgASgJEhQKDGNoYXR0aW5nVGV4dBgCIAEoCRIMCgR0aW1lGAMg",
-            "ASgDIi8KC0FkZHJlc3NCb29rEiAKBnBlb3BsZRgBIAMoCzIQLlByb3RvY29s",
-            "LlBlcnNvbjKGAQoLU2VydmljZVRlc3QSOAoKZmlyc3RFdmVudBIULlByb3Rv",
-            "Y29sLkdldFJlcXVlc3QaFC5Qcm90b2NvbC5HZXRSZXF1ZXN0Ej0KC3NlY29u",
-            "ZEV2ZW50EhYuUHJvdG9jb2wuS2V5TnVtYmVyUmVxGhYuUHJvdG9jb2wuS2V5",
-            "TnVtYmVyUmVxMu0BCglEQlJlcXVlc3QSOAoLR2V0VXNlckluZm8SFC5Qcm90",
-            "b2NvbC5HZXRSZXF1ZXN0GhMuUHJvdG9jb2wuR2V0VXNlckRCEjMKClJlZ2lz",
-            "dFVzZXISDy5Qcm90b2NvbC5JRFNldBoULlByb3RvY29sLlRyeVJlc3VsdHMS",
-            "MwoKRGVsZXRlVXNlchIPLlByb3RvY29sLklEU2V0GhQuUHJvdG9jb2wuVHJ5",
-            "UmVzdWx0cxI8CghDaGF0dGluZxIVLlByb3RvY29sLkNoYXRNZXNzYWdlGhUu",
-            "UHJvdG9jb2wuQ2hhdE1lc3NhZ2UoATABQhuqAhhHb29nbGUuUHJvdG9idWYu",
+            "aW1lc3RhbXAucHJvdG8aG2dvb2dsZS9wcm90b2J1Zi9lbXB0eS5wcm90byKH",
+            "AgoGUGVyc29uEgwKBG5hbWUYASABKAkSCgoCaWQYAiABKAUSDQoFZW1haWwY",
+            "AyABKAkSLAoGcGhvbmVzGAQgAygLMhwuUHJvdG9jb2wuUGVyc29uLlBob25l",
+            "TnVtYmVyEjAKDGxhc3RfdXBkYXRlZBgFIAEoCzIaLmdvb2dsZS5wcm90b2J1",
+            "Zi5UaW1lc3RhbXAaRwoLUGhvbmVOdW1iZXISDgoGbnVtYmVyGAEgASgJEigK",
+            "BHR5cGUYAiABKA4yGi5Qcm90b2NvbC5QZXJzb24uUGhvbmVUeXBlIisKCVBo",
+            "b25lVHlwZRIKCgZNT0JJTEUQABIICgRIT01FEAESCAoEV09SSxACIjEKBFVz",
+            "ZXISDgoGdXNlcklEGAEgASgJEg0KBXRva2VuGAIgASgJEgoKAmlwGAMgASgJ",
+            "IiEKCkdldFJlcXVlc3QSEwoLcmVxdWVzdFdvcmQYASABKAkiJQoFSURTZXQS",
+            "EAoIcGFzc3dvcmQYASABKAkSCgoCaWQYAiABKAkiOAoMS2V5TnVtYmVyUmVx",
+            "EhMKC3JlcXVlc3RXb3JkGAEgASgJEhMKC3JlcXVlc3ROdW1iGAIgASgFIjIK",
+            "CUdldFVzZXJEQhINCgVpbmRleBgBIAEoBRIKCgJpZBgCIAEoCRIKCgJwdxgD",
+            "IAEoCSIvCgpUcnlSZXN1bHRzEg4KBnJlc3VsdBgBIAEoCBIRCgllcnJvclRl",
+            "eHQYAiABKAkiVQoLQ2hhdE1lc3NhZ2USEAoIdXNlck5hbWUYASABKAkSFAoM",
+            "Y2hhdHRpbmdUZXh0GAIgASgJEgwKBHRpbWUYAyABKAMSEAoIcm9vbU5hbWUY",
+            "BCABKAkiLwoLQWRkcmVzc0Jvb2sSIAoGcGVvcGxlGAEgAygLMhAuUHJvdG9j",
+            "b2wuUGVyc29uMoYBCgtTZXJ2aWNlVGVzdBI4CgpmaXJzdEV2ZW50EhQuUHJv",
+            "dG9jb2wuR2V0UmVxdWVzdBoULlByb3RvY29sLkdldFJlcXVlc3QSPQoLc2Vj",
+            "b25kRXZlbnQSFi5Qcm90b2NvbC5LZXlOdW1iZXJSZXEaFi5Qcm90b2NvbC5L",
+            "ZXlOdW1iZXJSZXEypgQKCURCUmVxdWVzdBI4CgtHZXRVc2VySW5mbxIULlBy",
+            "b3RvY29sLkdldFJlcXVlc3QaEy5Qcm90b2NvbC5HZXRVc2VyREISMwoKUmVn",
+            "aXN0VXNlchIPLlByb3RvY29sLklEU2V0GhQuUHJvdG9jb2wuVHJ5UmVzdWx0",
+            "cxIzCgpEZWxldGVVc2VyEg8uUHJvdG9jb2wuSURTZXQaFC5Qcm90b2NvbC5U",
+            "cnlSZXN1bHRzEjwKCENoYXR0aW5nEhUuUHJvdG9jb2wuQ2hhdE1lc3NhZ2Ua",
+            "FS5Qcm90b2NvbC5DaGF0TWVzc2FnZSgBMAESPAoORGVsZXRlQ2hhdFJvb20S",
+            "FC5Qcm90b2NvbC5HZXRSZXF1ZXN0GhQuUHJvdG9jb2wuVHJ5UmVzdWx0cxI+",
+            "CgxKb2luQ2hhdFJvb20SFS5Qcm90b2NvbC5DaGF0TWVzc2FnZRoVLlByb3Rv",
+            "Y29sLkNoYXRNZXNzYWdlMAESPwoOQ3JlYXRlQ2hhdFJvb20SFS5Qcm90b2Nv",
+            "bC5DaGF0TWVzc2FnZRoULlByb3RvY29sLlRyeVJlc3VsdHMoARI8Cg5VcGRh",
+            "dGVDaGF0Um9vbRIULlByb3RvY29sLkdldFJlcXVlc3QaFC5Qcm90b2NvbC5U",
+            "cnlSZXN1bHRzEjoKDEV4aXRDaGF0Um9vbRIULlByb3RvY29sLkdldFJlcXVl",
+            "c3QaFC5Qcm90b2NvbC5UcnlSZXN1bHRzQhuqAhhHb29nbGUuUHJvdG9idWYu",
             "UHJvdG9jb2xiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.Person), global::Google.Protobuf.Protocol.Person.Parser, new[]{ "Name", "Id", "Email", "Phones", "LastUpdated" }, null, new[]{ typeof(global::Google.Protobuf.Protocol.Person.Types.PhoneType) }, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.Person.Types.PhoneNumber), global::Google.Protobuf.Protocol.Person.Types.PhoneNumber.Parser, new[]{ "Number", "Type" }, null, null, null, null)}),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.User), global::Google.Protobuf.Protocol.User.Parser, new[]{ "UserID", "Token", "Ip" }, null, null, null, null),
@@ -60,7 +68,7 @@ namespace Google.Protobuf.Protocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.KeyNumberReq), global::Google.Protobuf.Protocol.KeyNumberReq.Parser, new[]{ "RequestWord", "RequestNumb" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.GetUserDB), global::Google.Protobuf.Protocol.GetUserDB.Parser, new[]{ "Index", "Id", "Pw" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.TryResults), global::Google.Protobuf.Protocol.TryResults.Parser, new[]{ "Result", "ErrorText" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ChatMessage), global::Google.Protobuf.Protocol.ChatMessage.Parser, new[]{ "UserName", "ChattingText", "Time" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.ChatMessage), global::Google.Protobuf.Protocol.ChatMessage.Parser, new[]{ "UserName", "ChattingText", "Time", "RoomName" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Google.Protobuf.Protocol.AddressBook), global::Google.Protobuf.Protocol.AddressBook.Parser, new[]{ "People" }, null, null, null, null)
           }));
     }
@@ -2152,6 +2160,7 @@ namespace Google.Protobuf.Protocol {
       userName_ = other.userName_;
       chattingText_ = other.chattingText_;
       time_ = other.time_;
+      roomName_ = other.roomName_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2197,6 +2206,18 @@ namespace Google.Protobuf.Protocol {
       }
     }
 
+    /// <summary>Field number for the "roomName" field.</summary>
+    public const int RoomNameFieldNumber = 4;
+    private string roomName_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string RoomName {
+      get { return roomName_; }
+      set {
+        roomName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -2215,6 +2236,7 @@ namespace Google.Protobuf.Protocol {
       if (UserName != other.UserName) return false;
       if (ChattingText != other.ChattingText) return false;
       if (Time != other.Time) return false;
+      if (RoomName != other.RoomName) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2225,6 +2247,7 @@ namespace Google.Protobuf.Protocol {
       if (UserName.Length != 0) hash ^= UserName.GetHashCode();
       if (ChattingText.Length != 0) hash ^= ChattingText.GetHashCode();
       if (Time != 0L) hash ^= Time.GetHashCode();
+      if (RoomName.Length != 0) hash ^= RoomName.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2255,6 +2278,10 @@ namespace Google.Protobuf.Protocol {
         output.WriteRawTag(24);
         output.WriteInt64(Time);
       }
+      if (RoomName.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(RoomName);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -2277,6 +2304,10 @@ namespace Google.Protobuf.Protocol {
         output.WriteRawTag(24);
         output.WriteInt64(Time);
       }
+      if (RoomName.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(RoomName);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -2295,6 +2326,9 @@ namespace Google.Protobuf.Protocol {
       }
       if (Time != 0L) {
         size += 1 + pb::CodedOutputStream.ComputeInt64Size(Time);
+      }
+      if (RoomName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(RoomName);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2316,6 +2350,9 @@ namespace Google.Protobuf.Protocol {
       }
       if (other.Time != 0L) {
         Time = other.Time;
+      }
+      if (other.RoomName.Length != 0) {
+        RoomName = other.RoomName;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2348,6 +2385,10 @@ namespace Google.Protobuf.Protocol {
             Time = input.ReadInt64();
             break;
           }
+          case 34: {
+            RoomName = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -2377,6 +2418,10 @@ namespace Google.Protobuf.Protocol {
           }
           case 24: {
             Time = input.ReadInt64();
+            break;
+          }
+          case 34: {
+            RoomName = input.ReadString();
             break;
           }
         }

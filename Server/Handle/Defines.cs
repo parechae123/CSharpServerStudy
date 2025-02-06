@@ -12,6 +12,9 @@ using System.Security.AccessControl;
 using MySql.Data.MySqlClient;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using MySqlX.XDevAPI.Common;
+using CSharpServerStudy.Server.Network;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Google.Protobuf.WellKnownTypes;
 namespace CSharpServerStudy.Server.Handle
 {
     public class UserInfo
@@ -149,21 +152,101 @@ namespace CSharpServerStudy.Server.Handle
         }
         public override async Task Chatting(IAsyncStreamReader<ChatMessage> requestStream,IServerStreamWriter<ChatMessage> responseStream,ServerCallContext context)
         {
-            // 클라이언트가 보내는 메시지를 수신하면서 반복 처리
-            while (await requestStream.MoveNext())
-            {
-                var incomingMessage = requestStream.Current;
-                Console.WriteLine($"[Received] {incomingMessage.UserName}: {incomingMessage.ChattingText}");
 
-                // 예시: 받은 메시지를 에코(Echo)하여 클라이언트에게 다시 보냄
-                await responseStream.WriteAsync(new ChatMessage
-                {
-                    UserName = incomingMessage.UserName,
-                    ChattingText = incomingMessage.ChattingText ,
-                    Time = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
-                });
-                
+            await requestStream.MoveNext();
+            var joinMessage = requestStream.Current;
+            if (!SingleTone<DBConnectedServer>.GetInstance.rooms.ContainsKey(joinMessage.RoomName))
+            {
+                SingleTone<DBConnectedServer>.GetInstance.rooms.Add(joinMessage.RoomName, new List<IAsyncStreamWriter<ChatMessage>>());
             }
+            SingleTone<DBConnectedServer>.GetInstance.rooms[joinMessage.RoomName].Add(responseStream);
+
+
+            try
+            {
+                while (await requestStream.MoveNext())
+                {
+
+                    var incomingMessage = requestStream.Current;
+                    Console.WriteLine($"[Received] {incomingMessage.UserName}: {incomingMessage.ChattingText}");
+
+                    foreach (IAsyncStreamWriter<ChatMessage> item in SingleTone<DBConnectedServer>.GetInstance.rooms[incomingMessage.RoomName])
+                    {
+                        if (item == null)
+                        {
+                            continue;
+                        }
+
+                        try
+                        {
+                            await item.WriteAsync(new ChatMessage
+                            {
+                                UserName = incomingMessage.UserName,
+                                ChattingText = incomingMessage.ChattingText,
+                                Time = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
+                                RoomName = incomingMessage.RoomName
+                            });
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"채팅 오류 발생: {ex.Message}");
+                            SingleTone<DBConnectedServer>.GetInstance.rooms[incomingMessage.RoomName].Remove(item);
+                            continue;
+                            //throw new RpcException(new Status(StatusCode.Unknown, $"Error processing chat: {ex.Message}"));
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"채팅 오류 발생{ex.Message}");
+                //throw;
+            }
+            // 클라이언트가 보내는 메시지를 수신하면서 반복 처리
+
+        }
+        public override Task<TryResults> CreateChatRoom(IAsyncStreamReader<ChatMessage> requestStream, ServerCallContext context)
+        {
+            TryResults temp = new TryResults();
+            
+            return Task.FromResult(temp);
+        }
+        public override Task JoinChatRoom(ChatMessage userData, IServerStreamWriter<ChatMessage> responseStream, ServerCallContext context)
+        {
+            
+            return Task.FromResult(userData);
+        }
+        public override Task<TryResults> DeleteChatRoom(GetRequest request, ServerCallContext context)
+        {
+            TryResults temp = new TryResults();
+
+            return Task.FromResult(temp);
+        }
+        public override Task<TryResults> UpdateChatRoom(GetRequest request, ServerCallContext context)
+        {
+            TryResults temp = new TryResults();
+
+            return Task.FromResult(temp);
+        }
+    }
+    public class SingleTone <T> where T : new()
+    {
+        public static T GetInstance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new T();
+                }
+                return instance;
+            }
+        }
+        private static T instance;
+        public static void Release()
+        {
+            instance = default(T);
         }
     }
 }

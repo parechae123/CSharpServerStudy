@@ -4,6 +4,7 @@ syntax = "proto3";
 package Protocol;
 
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
 
 option csharp_namespace = "Google.Protobuf.Protocol";
 
@@ -68,12 +69,19 @@ message ChatMessage
     string userName =1;
     string chattingText = 2;
     int64 time = 3;
+    string roomName =4;
 }
+
 service DBRequest{
     rpc GetUserInfo(GetRequest) returns (GetUserDB);
     rpc RegistUser(IDSet) returns(TryResults);
     rpc DeleteUser(IDSet) returns(TryResults);
     rpc Chatting(stream ChatMessage) returns(stream ChatMessage);
+    rpc DeleteChatRoom(GetRequest) returns(TryResults);
+    rpc JoinChatRoom(ChatMessage) returns(stream ChatMessage);
+    rpc CreateChatRoom(stream ChatMessage) returns(TryResults);
+    rpc UpdateChatRoom(GetRequest) returns(TryResults);
+    rpc ExitChatRoom(GetRequest) returns(TryResults);
 }
 
 // Our address book file is just one of these.

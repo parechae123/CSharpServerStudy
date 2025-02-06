@@ -1,4 +1,6 @@
 ﻿using CSharpServerStudy.Server.Handle;
+using Google.Protobuf.Protocol;
+using Grpc.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -16,9 +18,10 @@ using System.Threading.Tasks;
 namespace CSharpServerStudy.Server.Network
 {
     //ORM은 게임 서버에서 사용하지 않음,속도떄문
-    internal class DBConnectedServer
+    internal class DBConnectedServer : SingleTone<DBConnectedServer>
     {
         WebApplicationBuilder builder = WebApplication.CreateBuilder();
+        public Dictionary<string, List<IAsyncStreamWriter<ChatMessage>>> rooms = new Dictionary<string, List<IAsyncStreamWriter<ChatMessage>>>();
         DBConnector con;
         public void Start()
         {
@@ -118,4 +121,5 @@ namespace CSharpServerStudy.Server.Network
             return datas;
         }
     }
+    
 }

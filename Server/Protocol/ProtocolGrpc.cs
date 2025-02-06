@@ -270,6 +270,46 @@ namespace Google.Protobuf.Protocol {
         __Marshaller_Protocol_ChatMessage,
         __Marshaller_Protocol_ChatMessage);
 
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Google.Protobuf.Protocol.GetRequest, global::Google.Protobuf.Protocol.TryResults> __Method_DeleteChatRoom = new grpc::Method<global::Google.Protobuf.Protocol.GetRequest, global::Google.Protobuf.Protocol.TryResults>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "DeleteChatRoom",
+        __Marshaller_Protocol_GetRequest,
+        __Marshaller_Protocol_TryResults);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Google.Protobuf.Protocol.ChatMessage, global::Google.Protobuf.Protocol.ChatMessage> __Method_JoinChatRoom = new grpc::Method<global::Google.Protobuf.Protocol.ChatMessage, global::Google.Protobuf.Protocol.ChatMessage>(
+        grpc::MethodType.ServerStreaming,
+        __ServiceName,
+        "JoinChatRoom",
+        __Marshaller_Protocol_ChatMessage,
+        __Marshaller_Protocol_ChatMessage);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Google.Protobuf.Protocol.ChatMessage, global::Google.Protobuf.Protocol.TryResults> __Method_CreateChatRoom = new grpc::Method<global::Google.Protobuf.Protocol.ChatMessage, global::Google.Protobuf.Protocol.TryResults>(
+        grpc::MethodType.ClientStreaming,
+        __ServiceName,
+        "CreateChatRoom",
+        __Marshaller_Protocol_ChatMessage,
+        __Marshaller_Protocol_TryResults);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Google.Protobuf.Protocol.GetRequest, global::Google.Protobuf.Protocol.TryResults> __Method_UpdateChatRoom = new grpc::Method<global::Google.Protobuf.Protocol.GetRequest, global::Google.Protobuf.Protocol.TryResults>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "UpdateChatRoom",
+        __Marshaller_Protocol_GetRequest,
+        __Marshaller_Protocol_TryResults);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Google.Protobuf.Protocol.GetRequest, global::Google.Protobuf.Protocol.TryResults> __Method_ExitChatRoom = new grpc::Method<global::Google.Protobuf.Protocol.GetRequest, global::Google.Protobuf.Protocol.TryResults>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ExitChatRoom",
+        __Marshaller_Protocol_GetRequest,
+        __Marshaller_Protocol_TryResults);
+
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
@@ -300,6 +340,36 @@ namespace Google.Protobuf.Protocol {
 
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::System.Threading.Tasks.Task Chatting(grpc::IAsyncStreamReader<global::Google.Protobuf.Protocol.ChatMessage> requestStream, grpc::IServerStreamWriter<global::Google.Protobuf.Protocol.ChatMessage> responseStream, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::Google.Protobuf.Protocol.TryResults> DeleteChatRoom(global::Google.Protobuf.Protocol.GetRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task JoinChatRoom(global::Google.Protobuf.Protocol.ChatMessage request, grpc::IServerStreamWriter<global::Google.Protobuf.Protocol.ChatMessage> responseStream, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::Google.Protobuf.Protocol.TryResults> CreateChatRoom(grpc::IAsyncStreamReader<global::Google.Protobuf.Protocol.ChatMessage> requestStream, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::Google.Protobuf.Protocol.TryResults> UpdateChatRoom(global::Google.Protobuf.Protocol.GetRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::Google.Protobuf.Protocol.TryResults> ExitChatRoom(global::Google.Protobuf.Protocol.GetRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -403,6 +473,86 @@ namespace Google.Protobuf.Protocol {
       {
         return CallInvoker.AsyncDuplexStreamingCall(__Method_Chatting, null, options);
       }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Google.Protobuf.Protocol.TryResults DeleteChatRoom(global::Google.Protobuf.Protocol.GetRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DeleteChatRoom(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Google.Protobuf.Protocol.TryResults DeleteChatRoom(global::Google.Protobuf.Protocol.GetRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_DeleteChatRoom, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.Protocol.TryResults> DeleteChatRoomAsync(global::Google.Protobuf.Protocol.GetRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DeleteChatRoomAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.Protocol.TryResults> DeleteChatRoomAsync(global::Google.Protobuf.Protocol.GetRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_DeleteChatRoom, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncServerStreamingCall<global::Google.Protobuf.Protocol.ChatMessage> JoinChatRoom(global::Google.Protobuf.Protocol.ChatMessage request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return JoinChatRoom(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncServerStreamingCall<global::Google.Protobuf.Protocol.ChatMessage> JoinChatRoom(global::Google.Protobuf.Protocol.ChatMessage request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncServerStreamingCall(__Method_JoinChatRoom, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncClientStreamingCall<global::Google.Protobuf.Protocol.ChatMessage, global::Google.Protobuf.Protocol.TryResults> CreateChatRoom(grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return CreateChatRoom(new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncClientStreamingCall<global::Google.Protobuf.Protocol.ChatMessage, global::Google.Protobuf.Protocol.TryResults> CreateChatRoom(grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncClientStreamingCall(__Method_CreateChatRoom, null, options);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Google.Protobuf.Protocol.TryResults UpdateChatRoom(global::Google.Protobuf.Protocol.GetRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return UpdateChatRoom(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Google.Protobuf.Protocol.TryResults UpdateChatRoom(global::Google.Protobuf.Protocol.GetRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_UpdateChatRoom, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.Protocol.TryResults> UpdateChatRoomAsync(global::Google.Protobuf.Protocol.GetRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return UpdateChatRoomAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.Protocol.TryResults> UpdateChatRoomAsync(global::Google.Protobuf.Protocol.GetRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_UpdateChatRoom, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Google.Protobuf.Protocol.TryResults ExitChatRoom(global::Google.Protobuf.Protocol.GetRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExitChatRoom(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::Google.Protobuf.Protocol.TryResults ExitChatRoom(global::Google.Protobuf.Protocol.GetRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ExitChatRoom, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.Protocol.TryResults> ExitChatRoomAsync(global::Google.Protobuf.Protocol.GetRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ExitChatRoomAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.Protocol.TryResults> ExitChatRoomAsync(global::Google.Protobuf.Protocol.GetRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ExitChatRoom, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       protected override DBRequestClient NewInstance(ClientBaseConfiguration configuration)
@@ -420,7 +570,12 @@ namespace Google.Protobuf.Protocol {
           .AddMethod(__Method_GetUserInfo, serviceImpl.GetUserInfo)
           .AddMethod(__Method_RegistUser, serviceImpl.RegistUser)
           .AddMethod(__Method_DeleteUser, serviceImpl.DeleteUser)
-          .AddMethod(__Method_Chatting, serviceImpl.Chatting).Build();
+          .AddMethod(__Method_Chatting, serviceImpl.Chatting)
+          .AddMethod(__Method_DeleteChatRoom, serviceImpl.DeleteChatRoom)
+          .AddMethod(__Method_JoinChatRoom, serviceImpl.JoinChatRoom)
+          .AddMethod(__Method_CreateChatRoom, serviceImpl.CreateChatRoom)
+          .AddMethod(__Method_UpdateChatRoom, serviceImpl.UpdateChatRoom)
+          .AddMethod(__Method_ExitChatRoom, serviceImpl.ExitChatRoom).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -434,6 +589,11 @@ namespace Google.Protobuf.Protocol {
       serviceBinder.AddMethod(__Method_RegistUser, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Google.Protobuf.Protocol.IDSet, global::Google.Protobuf.Protocol.TryResults>(serviceImpl.RegistUser));
       serviceBinder.AddMethod(__Method_DeleteUser, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Google.Protobuf.Protocol.IDSet, global::Google.Protobuf.Protocol.TryResults>(serviceImpl.DeleteUser));
       serviceBinder.AddMethod(__Method_Chatting, serviceImpl == null ? null : new grpc::DuplexStreamingServerMethod<global::Google.Protobuf.Protocol.ChatMessage, global::Google.Protobuf.Protocol.ChatMessage>(serviceImpl.Chatting));
+      serviceBinder.AddMethod(__Method_DeleteChatRoom, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Google.Protobuf.Protocol.GetRequest, global::Google.Protobuf.Protocol.TryResults>(serviceImpl.DeleteChatRoom));
+      serviceBinder.AddMethod(__Method_JoinChatRoom, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Google.Protobuf.Protocol.ChatMessage, global::Google.Protobuf.Protocol.ChatMessage>(serviceImpl.JoinChatRoom));
+      serviceBinder.AddMethod(__Method_CreateChatRoom, serviceImpl == null ? null : new grpc::ClientStreamingServerMethod<global::Google.Protobuf.Protocol.ChatMessage, global::Google.Protobuf.Protocol.TryResults>(serviceImpl.CreateChatRoom));
+      serviceBinder.AddMethod(__Method_UpdateChatRoom, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Google.Protobuf.Protocol.GetRequest, global::Google.Protobuf.Protocol.TryResults>(serviceImpl.UpdateChatRoom));
+      serviceBinder.AddMethod(__Method_ExitChatRoom, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Google.Protobuf.Protocol.GetRequest, global::Google.Protobuf.Protocol.TryResults>(serviceImpl.ExitChatRoom));
     }
 
   }
